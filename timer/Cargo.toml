@@ -1,0 +1,12 @@
+[package]
+name = "timer"
+version = "0.1.0"
+authors = ["yangpan"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+console_support={path="../console_support"}
+riscv = { git = "https://github.com/rcore-os/riscv", features = ["inline-asm"] }
+bus={path="../hostbus"}
