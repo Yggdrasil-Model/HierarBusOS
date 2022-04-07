@@ -1,0 +1,11 @@
+/home/yangpan/HierarBusOS/Initial_stage/target/riscv64gc-unknown-none-elf/debug/deps/xmas_elf-cf44ae8538bc4a52.rmeta: /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/lib.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/header.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/sections.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/program.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/symbol_table.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/dynamic.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/hash.rs
+
+/home/yangpan/HierarBusOS/Initial_stage/target/riscv64gc-unknown-none-elf/debug/deps/xmas_elf-cf44ae8538bc4a52.d: /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/lib.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/header.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/sections.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/program.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/symbol_table.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/dynamic.rs /home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/hash.rs
+
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/lib.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/header.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/sections.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/program.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/symbol_table.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/dynamic.rs:
+/home/yangpan/.cargo/registry/src/mirrors.ustc.edu.cn-61ef6e0cd06fb9b8/xmas-elf-0.7.0/src/hash.rs:

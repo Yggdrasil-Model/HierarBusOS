@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 console_support={path="../console_support"}
-bus={path="../hostbus"}
+bus={path="../host_bus"}

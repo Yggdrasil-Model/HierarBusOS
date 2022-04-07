@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 console_support={path="../console_support"}
 riscv = { git = "https://github.com/rcore-os/riscv", features = ["inline-asm"] }
-bus={path="../hostbus"}
+bus={path="../host_bus"}

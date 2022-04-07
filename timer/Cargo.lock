@@ -48,6 +48,7 @@ dependencies = [
  "lazy_static",
  "riscv",
  "spin 0.7.1",
+ "user_bridge",
 ]
 
 [[package]]
@@ -173,5 +174,12 @@ version = "0.1.0"
 dependencies = [
  "bus",
  "console_support",
+ "riscv",
+]
+
+[[package]]
+name = "user_bridge"
+version = "0.1.0"
+dependencies = [
  "riscv",
 ]
