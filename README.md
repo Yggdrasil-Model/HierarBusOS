@@ -1,13 +1,21 @@
 # HierarBusOS
+
+
+
 HierarBusOS a research prototype in [Rust](https://www.rust-lang.org/) to show one of the numerous Yggdrasil implementations.
 
 HierarBusOS is under active development, and although it is not yet mature. 
 
+
+
 # Building and Running HierarBusOS on Linux
+
 **Note:** Linux, 64-bit Debian-based distributions like Ubuntu,  tested on Ubuntu 20.04.
 ```
 git clone https://github.com/Yggdrasil-Model/HierarBusOS.git
 ```
+
+
 ## Setting up the Rust development environment
 
 1. Install Rust by following the [setup instructions here](https://www.rust-lang.org/en-US/install.html). On Linux, just run:
@@ -21,6 +29,7 @@ source $HOME/.cargo/env
 3. Make sure the Rust toolchain is installed correctly
 
 **Note:** Only use the nightly version of rustc.
+
 ```
 rustc --version
 ```
