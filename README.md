@@ -19,7 +19,8 @@ curl https://sh.rustup.rs -sSf | sh
 source $HOME/.cargo/env
 ```
 3. Make sure the Rust toolchain is installed correctly
-**Note:**: Only use the nightly version of rustc.
+
+**Note:**Only use the nightly version of rustc.
 ```
 rustc --version
 ```
@@ -51,7 +52,7 @@ cd qemu-5.0.0
 ./configure --target-list=riscv64-softmmu,riscv64-linux-user
 make -j$(nproc)
 ```
-**Note:**:The above dependencies may not be complete, for example， the following errors may occur on Ubuntu 18.04:
+**Note:**The above dependencies may not be complete, for example， the following errors may occur on Ubuntu 18.04:
 * ERROR: pkg-config binary 'pkg-config' not found. You can install pkg-config.
 * ERROR: glib-2.48 gthread-2.0 is required to compile QEMU. You can install libglib2.0-dev
 * ERROR: pixman >= 0.21.8 not present. You can install libpixman-1-dev.
