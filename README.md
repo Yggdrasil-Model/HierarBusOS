@@ -67,18 +67,40 @@ make -j$(nproc)
 * ERROR: glib-2.48 gthread-2.0 is required to compile QEMU. You can install libglib2.0-dev
 * ERROR: pixman >= 0.21.8 not present. You can install libpixman-1-dev.
 
-5. install
+5. Install
 ```
 sudo make install
 or 
-vi ~/.bashrc
+# add lines in ~/.bashrc
 export PATH=$PATH:$HOME/qemu-5.0.0
 export PATH=$PATH:$HOME/qemu-5.0.0/riscv64-softmmu
 export PATH=$PATH:$HOME/qemu-5.0.0/riscv64-linux-user
 source ~/.bashrc
 ```
 
+## Running LMbench in C
+
+1. Build musl-libc
+```
+git clone https://github.com/richfelker/musl-cross-make.git
+cp config.mak.dist config.mak
+   
+# add lines in config.mak
+TARGET = riscv64-linux-musl
+OUTPUT = /usr/local
+GCC_CONFIG += --with-abi=lp64
+GCC_CONFIG += --with-arch=rv64gc
+
+make && sudo make install
+```
+2. Compile
+```
+cd cbenchmark
+make
+```
+
 ## Building and Running
+
 ```
 cd Initial_stage
 make run
