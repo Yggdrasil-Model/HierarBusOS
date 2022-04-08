@@ -228,10 +228,7 @@ impl Busadapter for Task{
             TASK_TRAP_CX =>
             {
                 let ret = current_trap_cx();
-                let mut v:Vec<&mut TrapContext> = Vec::new();
-                v.push(ret);
-                let v = v.as_ptr();
-                v as isize
+                1
             }
             TASK_ENVCALL =>
             {
