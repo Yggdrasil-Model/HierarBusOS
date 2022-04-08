@@ -19,10 +19,11 @@ curl https://sh.rustup.rs -sSf | sh
 source $HOME/.cargo/env
 ```
 3. Make sure the Rust toolchain is installed correctly
+**Note:**: Only use the nightly version of rustc.
 ```
 rustc --version
 ```
-**NOTE**: Only use the nightly version of rustc.
+
 4. Install dependencies:
 ```
 rustup target add riscv64gc-unknown-none-elf
@@ -50,7 +51,7 @@ cd qemu-5.0.0
 ./configure --target-list=riscv64-softmmu,riscv64-linux-user
 make -j$(nproc)
 ```
-**NOTE**:The above dependencies may not be complete, for example， the following error may occur on Ubuntu 18.04:
+**Note:**:The above dependencies may not be complete, for example， the following errors may occur on Ubuntu 18.04:
 * ERROR: pkg-config binary 'pkg-config' not found. You can install pkg-config.
 * ERROR: glib-2.48 gthread-2.0 is required to compile QEMU. You can install libglib2.0-dev
 * ERROR: pixman >= 0.21.8 not present. You can install libpixman-1-dev.
@@ -58,7 +59,8 @@ make -j$(nproc)
 5. install
 ```
 sudo make install
-or vi ~/.bashrc
+or 
+vi ~/.bashrc
 export PATH=$PATH:$HOME/qemu-5.0.0
 export PATH=$PATH:$HOME/qemu-5.0.0/riscv64-softmmu
 export PATH=$PATH:$HOME/qemu-5.0.0/riscv64-linux-user
