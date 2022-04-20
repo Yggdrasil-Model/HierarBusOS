@@ -16,7 +16,8 @@ timer={path="../timer"}
 filesystem={path="../filesystem"}
 task_manager={path="../task_manager"}
 memory_manager={path="../memory_manager"}
-
+net_bridge={path="../net_bridge"}
+cluster_bus={path="../cluster_bus"}
 [features]
 board_qemu = []
 board_k210 = []

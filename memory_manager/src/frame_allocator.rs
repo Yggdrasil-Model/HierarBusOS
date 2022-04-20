@@ -36,6 +36,7 @@ trait FrameAllocator {
     fn new() -> Self;
     fn alloc(&mut self) -> Option<PhysPageNum>;
     fn dealloc(&mut self, ppn: PhysPageNum);
+    fn alloc_contiguous(&mut self, pages: usize) -> Option<PhysPageNum>;
 }
 
 pub struct StackFrameAllocator {
@@ -89,6 +90,15 @@ impl FrameAllocator for StackFrameAllocator {
         // recycle
         self.recycled.push(ppn);
     }
+    fn alloc_contiguous(&mut self, pages: usize) -> Option<PhysPageNum> {
+        if (self.current + pages) >= self.end{
+            None
+        }
+        else {
+            self.current += pages;
+            Some((self.current-pages).into())
+        }
+    }
 }
 
 type FrameAllocatorImpl = StackFrameAllocator;
@@ -114,7 +124,12 @@ pub fn frame_alloc() -> Option<FrameTracker> {
         .map(|ppn| FrameTracker::new(ppn))
 }
 
-fn frame_dealloc(ppn: PhysPageNum) {
+pub fn frame_alloc_contiguous(pages: usize) -> Option<PhysPageNum>{
+    FRAME_ALLOCATOR
+    .lock()
+    .alloc_contiguous(pages)
+}
+pub fn frame_dealloc(ppn: PhysPageNum) {
     FRAME_ALLOCATOR
         .lock()
         .dealloc(ppn);

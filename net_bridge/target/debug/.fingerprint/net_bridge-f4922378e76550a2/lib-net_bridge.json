@@ -1,0 +1,1 @@
+{"rustc":6372856551041593746,"features":"[]","target":9514424961476070716,"profile":1613559695681135254,"path":10872709659218687626,"deps":[[8480256463576878540,"smoltcp",false,3125036605722872641]],"local":[{"CheckDepInfo":{"dep_info":"debug/.fingerprint/net_bridge-f4922378e76550a2/dep-lib-net_bridge"}}],"rustflags":[],"metadata":10205973352385183414,"config":0}

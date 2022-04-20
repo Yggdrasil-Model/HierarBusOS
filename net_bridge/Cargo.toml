@@ -1,0 +1,14 @@
+[package]
+name = "net_bridge"
+version = "0.1.0"
+authors = ["Pan <892916811@qq.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+smoltcp = { git = "https://github.com/rcore-os/smoltcp", rev = "5bd87c7c", default-features = false, features = ["alloc", "log", "ethernet", "proto-ipv4", "proto-igmp", "socket-icmp", "socket-udp", "socket-tcp", "socket-raw"] }
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+spin = "0.7.0"
+riscv = { git = "https://github.com/rcore-os/riscv", features = ["inline-asm"] }
+virtio-drivers = { git = "https://github.com/rcore-riscv-hypervisor-dev/virtio-drivers", rev = "1201a0b" }

@@ -17,7 +17,7 @@ extern crate alloc;
 use console_support::sbi::*;
 
 pub use address::{PhysAddr, VirtAddr, PhysPageNum, VirtPageNum};
-pub use frame_allocator::{FrameTracker, frame_alloc,frame_none};
+pub use frame_allocator::{FrameTracker, frame_alloc,frame_none,frame_dealloc,frame_alloc_contiguous};
 use page_table::translated_iovec;
 pub use page_table::{PageTableEntry, translated_byte_buffer,translated_refmut,translated_str};
 pub use memory_set::{MemorySet, KERNEL_SPACE, MapPermission,MapArea,MapType};
