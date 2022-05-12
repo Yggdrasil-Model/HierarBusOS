@@ -99,6 +99,32 @@ cd cbenchmark
 make
 ```
 
+## Enable netdev
+
+1. install tools
+```
+sudo apt install bridge-utils
+sudo apt install uml-utilities
+```
+2. config
+```
+sudo chmod u+s /usr/lib/qemu/qemu-bridge-helper
+sudo brctl addbr br0
+sudo ip link set br0 up
+```
+3. create the required file（`*/bridge.conf`），otherwise the following error occurs
+```
+failed to parse default acl file `/etc/qemu/bridge.conf'
+qemu-system-riscv64: bridge helper failed
+
+```
+4. `echo "allow br0" > /etc/qemu/bridge.conf`,otherwise the following error occurs
+```
+access denied by acl file
+qemu-system-riscv64: bridge helper failed
+```
+
+
 ## Building and Running
 
 ```

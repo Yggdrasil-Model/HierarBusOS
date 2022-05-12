@@ -37,6 +37,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "buddy_system_allocator"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b4e85e760e105b46ae0bd1236578793c6c147ae7463fe95c8350296b8bfcb830"
+dependencies = [
+ "spin 0.7.1",
+]
+
+[[package]]
+name = "bus"
+version = "0.1.0"
+dependencies = [
+ "console_support",
+ "dynamic_malloc_support",
+ "lazy_static",
+ "riscv",
+ "spin 0.7.1",
+ "user_bridge",
+]
+
+[[package]]
 name = "byteorder"
 version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -53,6 +74,7 @@ name = "cluster_bus"
 version = "0.1.0"
 dependencies = [
  "bitflags",
+ "console_support",
  "lazy_static",
  "log",
  "net_bridge",
@@ -60,6 +82,23 @@ dependencies = [
  "num-derive",
  "num-traits",
  "smoltcp",
+]
+
+[[package]]
+name = "console_support"
+version = "0.1.0"
+
+[[package]]
+name = "device_tree"
+version = "1.0.3"
+source = "git+https://github.com/rcore-os/device_tree-rs?rev=2fa8411#2fa8411c421c6b4761992fd3d1a9b2427bf0cfc4"
+
+[[package]]
+name = "dynamic_malloc_support"
+version = "0.1.0"
+dependencies = [
+ "buddy_system_allocator",
+ "lazy_static",
 ]
 
 [[package]]
@@ -93,14 +132,34 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
 
 [[package]]
+name = "memory_manager"
+version = "0.1.0"
+dependencies = [
+ "bitflags",
+ "bus",
+ "console_support",
+ "dynamic_malloc_support",
+ "lazy_static",
+ "riscv",
+ "spin 0.7.1",
+ "xmas-elf",
+]
+
+[[package]]
 name = "net_bridge"
 version = "0.1.0"
 dependencies = [
+ "bitflags",
+ "console_support",
+ "device_tree",
+ "dynamic_malloc_support",
  "lazy_static",
+ "log",
+ "memory_manager",
  "riscv",
  "smoltcp",
  "spin 0.7.1",
- "virtio-drivers",
+ "volatile",
 ]
 
 [[package]]
@@ -300,17 +359,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
 
 [[package]]
-name = "virtio-drivers"
+name = "user_bridge"
 version = "0.1.0"
-source = "git+https://github.com/rcore-riscv-hypervisor-dev/virtio-drivers?rev=1201a0b#1201a0b40c016301c8135e564439e40a769facc8"
 dependencies = [
- "bitflags",
- "log",
- "volatile",
+ "riscv",
 ]
 
 [[package]]
 name = "volatile"
-version = "0.2.7"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f6b06ad3ed06fef1713569d547cdbdb439eafed76341820fb0e0344f29a41945"
+checksum = "f8e76fae08f03f96e166d2dfda232190638c10e0383841252416f9cfe2ae60e6"
+
+[[package]]
+name = "xmas-elf"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e74de9a366f6ab8c405fa6b371d9ac24943921fa14b3d64afcb202065c405f11"
+dependencies = [
+ "zero",
+]
+
+[[package]]
+name = "zero"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f1bc8a6b2005884962297587045002d8cfb8dcec9db332f4ca216ddc5de82c5"

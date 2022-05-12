@@ -4,7 +4,7 @@ MODE := release
 KERNEL_ELF := target/$(TARGET)/$(MODE)/os
 KERNEL_BIN := $(KERNEL_ELF).bin
 DISASM_TMP := target/$(TARGET)/$(MODE)/asm
-
+img := target/$(TARGET)/$(MODE)/img
 # BOARD
 BOARD ?= qemu
 SBI ?= rustsbi
@@ -60,15 +60,21 @@ disasm-vim: kernel
 
 run: run-inner
 
-	
 
-run-inner: build
+$(img):
+	dd if=/dev/zero of=$@ bs=512 count=32
+
+run-inner: build $(img)
 ifeq ($(BOARD),qemu)
 	@qemu-system-riscv64 \
 		-machine virt \
 		-nographic \
+		-serial mon:stdio \
 		-bios $(BOOTLOADER) \
-		-device loader,file=$(KERNEL_BIN),addr=$(KERNEL_ENTRY_PA)
+		-device loader,file=$(KERNEL_BIN),addr=$(KERNEL_ENTRY_PA)\
+		-drive file=$(img),if=none,format=raw,id=x0 \
+		-device virtio-net-device,netdev=net0\
+		-netdev tap,id=net0,"helper=/usr/lib/qemu/qemu-bridge-helper"
 else
 	(which $(K210-BURNER)) || (cd .. && git clone https://github.com/sipeed/kflash.py.git && mv kflash.py tools)
 	@cp $(BOOTLOADER) $(BOOTLOADER).copy

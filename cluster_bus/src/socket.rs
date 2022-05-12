@@ -14,6 +14,8 @@ use smoltcp::socket::*;
 use smoltcp::wire::*;
 use super::*;
 use lazy_static::*;
+use smoltcp::socket::*;
+use core::fmt::Write;
 #[derive(Clone, Debug)]
 pub struct LinkLevelEndpoint {
     pub interface_index: usize,
@@ -104,7 +106,7 @@ pub struct RawSocketState {
     header_included: bool,
 }
 
-#[derive(Debug, Clone)]
+/*#[derive(Debug, Clone)]
 pub struct PacketSocketState {
     // no state, only ethernet egress
 }
@@ -112,7 +114,7 @@ pub struct PacketSocketState {
 #[derive(Debug, Clone)]
 pub struct NetlinkSocketState {
     data: Arc<Lock<Vec<Vec<u8>>>>,
-}
+}*/
 
 
 
@@ -270,7 +272,53 @@ impl Socket for RawSocketState {
     }
 }
 
-impl PacketSocketState {
+
+pub fn test(){
+    let udp_rx_buffer = UdpSocketBuffer::new(vec![UdpPacketMetadata::EMPTY], vec![0; 64]);
+    let udp_tx_buffer = UdpSocketBuffer::new(vec![UdpPacketMetadata::EMPTY], vec![0; 128]);
+    let udp_socket = UdpSocket::new(udp_rx_buffer, udp_tx_buffer);
+
+    let tcp_rx_buffer = TcpSocketBuffer::new(vec![0; 1024]);
+    let tcp_tx_buffer = TcpSocketBuffer::new(vec![0; 1024]);
+    let tcp_socket = TcpSocket::new(tcp_rx_buffer, tcp_tx_buffer);
+
+    let tcp2_rx_buffer = TcpSocketBuffer::new(vec![0; 1024]);
+    let tcp2_tx_buffer = TcpSocketBuffer::new(vec![0; 1024]);
+    let tcp2_socket = TcpSocket::new(tcp2_rx_buffer, tcp2_tx_buffer);
+
+    let mut sockets = SOCKETS.lock();
+    let udp_handle = sockets.add(udp_socket);
+    let tcp_handle = sockets.add(tcp_socket);
+    let tcp2_handle = sockets.add(tcp2_socket);
+    drop(sockets);
+
+    loop {
+        {
+            let mut sockets = SOCKETS.lock();
+
+        
+
+
+            // simple tcp server that just eats everything
+            {
+                let mut socket = sockets.get::<TcpSocket>(tcp2_handle);
+                if !socket.is_open() {
+                    socket.listen(2222).unwrap();
+                }
+
+                if socket.can_recv() {
+                    let mut data = [0u8; 2048];
+                    let _size = socket.recv_slice(&mut data).unwrap();
+                    println!("recv: {:?}", &data[.._size]);
+                }
+            }
+        }
+
+        //thread::yield_now();
+    }
+}
+
+/*impl PacketSocketState {
     pub fn new() -> Self {
         PacketSocketState {}
     }
@@ -671,4 +719,4 @@ fn get_ephemeral_port() -> u16 {
 pub fn rand() -> u64 {
     return 0;
 }
-
+*/

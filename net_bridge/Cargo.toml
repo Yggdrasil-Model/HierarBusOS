@@ -11,4 +11,10 @@ smoltcp = { git = "https://github.com/rcore-os/smoltcp", rev = "5bd87c7c", defau
 lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
 spin = "0.7.0"
 riscv = { git = "https://github.com/rcore-os/riscv", features = ["inline-asm"] }
-virtio-drivers = { git = "https://github.com/rcore-riscv-hypervisor-dev/virtio-drivers", rev = "1201a0b" }
+device_tree = { git = "https://github.com/rcore-os/device_tree-rs", rev = "2fa8411" }
+log="0.4"
+memory_manager={path="../memory_manager"}
+dynamic_malloc_support={path="../dynamic_malloc_support"}
+console_support={path="../console_support"}
+volatile = "0.3"
+bitflags = "1.3"

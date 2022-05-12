@@ -74,6 +74,7 @@ name = "cluster_bus"
 version = "0.1.0"
 dependencies = [
  "bitflags",
+ "console_support",
  "lazy_static",
  "log",
  "net_bridge",
@@ -86,6 +87,11 @@ dependencies = [
 [[package]]
 name = "console_support"
 version = "0.1.0"
+
+[[package]]
+name = "device_tree"
+version = "1.0.3"
+source = "git+https://github.com/rcore-os/device_tree-rs?rev=2fa8411#2fa8411c421c6b4761992fd3d1a9b2427bf0cfc4"
 
 [[package]]
 name = "dynamic_malloc_support"
@@ -151,11 +157,17 @@ dependencies = [
 name = "net_bridge"
 version = "0.1.0"
 dependencies = [
+ "bitflags",
+ "console_support",
+ "device_tree",
+ "dynamic_malloc_support",
  "lazy_static",
+ "log",
+ "memory_manager",
  "riscv",
  "smoltcp",
  "spin 0.7.1",
- "virtio-drivers",
+ "volatile",
 ]
 
 [[package]]
@@ -401,20 +413,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "virtio-drivers"
-version = "0.1.0"
-source = "git+https://github.com/rcore-riscv-hypervisor-dev/virtio-drivers?rev=1201a0b#1201a0b40c016301c8135e564439e40a769facc8"
-dependencies = [
- "bitflags",
- "log",
- "volatile",
-]
-
-[[package]]
 name = "volatile"
-version = "0.2.7"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f6b06ad3ed06fef1713569d547cdbdb439eafed76341820fb0e0344f29a41945"
+checksum = "f8e76fae08f03f96e166d2dfda232190638c10e0383841252416f9cfe2ae60e6"
 
 [[package]]
 name = "xmas-elf"

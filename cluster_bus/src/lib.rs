@@ -3,7 +3,8 @@
 extern crate alloc;
 pub mod socket;
 pub use socket::*;
-
+#[macro_use]
+extern crate console_support;
 #[macro_use]
 extern crate num_derive;
 extern crate num;

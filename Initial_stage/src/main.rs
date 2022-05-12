@@ -48,8 +48,9 @@ fn clear_bss() {
 }
 
 
+
 #[no_mangle]
-pub fn rust_main() -> ! {
+pub fn rust_main(_hartid: usize, device_tree_paddr: usize) -> ! {
     clear_bss();
     unsafe{set_fs(FS::Initial);}
     if sstatus::read().fs()==FS::Initial{
@@ -58,6 +59,8 @@ pub fn rust_main() -> ! {
     println!("[kernel] Hello, world!");
     heap_allocator::init_heap();
     init();
+    net_bridge::init(device_tree_paddr);
+    //cluster_bus::test();
     let mut businner = BUS.acquire_inner_lock();
     businner.register_table.push( Some(Arc::new(Filesystem)));
     businner.register_table.push( Some(Arc::new(Timer)));
@@ -87,6 +90,9 @@ pub fn rust_main() -> ! {
         body: [0, 0, 0],
     };
     send(m);
+    unsafe{
+        sie::set_sext();
+    }
     let m = Message {
         node_id: TASK,
         service_id: TASK_RUNFIRST,

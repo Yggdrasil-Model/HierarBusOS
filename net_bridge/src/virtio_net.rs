@@ -6,9 +6,8 @@ use smoltcp::phy::{self, DeviceCapabilities};
 use smoltcp::time::Instant;
 use smoltcp::wire::{EthernetAddress, Ipv4Address};
 use smoltcp::Result;
-use virtio_drivers::{VirtIOHeader, VirtIONet};
-use super::{DeviceType, Driver, DRIVERS, NET_DRIVERS,NetDriver};
-use super::Lock::{Lock,LockGuard};
+use super::{Driver, DRIVERS, NET_DRIVERS,NetDriver,VirtIOHeader, VirtIONet,DeviceType};
+use super::Lock::{Lock};
 #[derive(Clone)]
 pub struct VirtIONetDriver(Arc<Lock<VirtIONet<'static>>>);
 
@@ -36,7 +35,7 @@ impl Driver for VirtIONetDriver {
     }
 
     fn device_type(&self) -> DeviceType {
-        DeviceType::Net
+        DeviceType::Network
     }
 
     fn get_id(&self) -> String {
@@ -103,10 +102,16 @@ impl phy::TxToken for VirtIONetDriver {
     }
 }
 
-pub fn init(header: &'static mut VirtIOHeader) {
-    let net = VirtIONet::new(header).expect("failed to create net driver");
+pub fn initnet(header: &'static mut VirtIOHeader) {
+    let mut net = VirtIONet::new(header).expect("failed to create net driver");
+    let mut buf = [0u8; 0x100];
+    //buf = [1;0x100];
+    //net.send(&buf).expect("failed to send");
+    //let len = net.recv(&mut buf).expect("failed to recv");
+   // println!("recv: {:?}", &buf[..len]);
+   
+    println!("virtio-net test finished");
     let driver = Arc::new(VirtIONetDriver(Arc::new(Lock::new(net))));
-
     DRIVERS.write().push(driver.clone());
    // IRQ_MANAGER.write().register_all(driver.clone());
     NET_DRIVERS.write().push(driver);
