@@ -122,6 +122,7 @@ pub fn init(dtb: usize) {
             walk_dt_node(&dt.root);
         }
     }
+    println!("finish device init");
 }
 
 fn walk_dt_node(dt: &Node) {

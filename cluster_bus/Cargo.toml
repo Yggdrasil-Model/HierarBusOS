@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-smoltcp = { git = "https://github.com/rcore-os/smoltcp", rev = "5bd87c7c", default-features = false, features = ["alloc", "log", "ethernet", "proto-ipv4", "proto-igmp", "socket-icmp", "socket-udp", "socket-tcp", "socket-raw"] }
+smoltcp = { git = "https://github.com/smoltcp-rs/smoltcp", default-features = false, features = ["log", "medium-ethernet", "proto-ipv4", "socket-tcp","alloc"] }
 lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
 bitflags = "1.2.1"
 num = { version = "0.2.1", default-features = false }

@@ -8,6 +8,7 @@ extern crate console_support;
 #[macro_use]
 extern crate num_derive;
 extern crate num;
+#[macro_use]
 extern crate lazy_static;
 use core::{fmt};
 #[macro_use]

@@ -81,7 +81,7 @@ dependencies = [
  "num",
  "num-derive",
  "num-traits",
- "smoltcp",
+ "smoltcp 0.8.0",
 ]
 
 [[package]]
@@ -126,6 +126,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c75de51135344a4f8ed3cfe2720dc27736f7711989703a0b43aadf3753c55577"
 
 [[package]]
+name = "managed"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ca88d725a0a943b096803bd34e73a4437208b6077654cc4ecb2947a5f91618d"
+
+[[package]]
 name = "memchr"
 version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -157,7 +163,7 @@ dependencies = [
  "log",
  "memory_manager",
  "riscv",
- "smoltcp",
+ "smoltcp 0.5.0",
  "spin 0.7.1",
  "volatile",
 ]
@@ -326,7 +332,19 @@ dependencies = [
  "bitflags",
  "byteorder",
  "log",
- "managed",
+ "managed 0.7.2",
+]
+
+[[package]]
+name = "smoltcp"
+version = "0.8.0"
+source = "git+https://github.com/smoltcp-rs/smoltcp#1b2458ae313a7f1ba022c586b04c4e6522b44046"
+dependencies = [
+ "bitflags",
+ "byteorder",
+ "cfg-if",
+ "log",
+ "managed 0.8.0",
 ]
 
 [[package]]
