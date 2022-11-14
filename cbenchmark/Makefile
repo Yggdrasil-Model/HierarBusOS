@@ -17,7 +17,7 @@ LIBOBJS=lib_timing.o
 INCS =	bench.h timing.h
 
 #CLFAGS += -march=rv64gc  -mabi=lp64
-TARGET =hello  lat_syscall lat_fork lat_exec lat_mmap
+TARGET =hello  lat_syscall lat_fork lat_exec lat_mmap lat_mmap2
 all:$(TARGET) 
 
 #lib
@@ -43,11 +43,14 @@ lat_exec: lat_exec.c $(INCS) lmbench.a
 lat_mmap: lat_mmap.c $(INCS) lmbench.a
 	$(CC)  -static  -O0 -o ./ctarget/lat_mmap lat_mmap.c ./clib/lmbench.a
 
+lat_mmap2: lat_mmap2.c $(INCS) lmbench.a
+	$(CC)  -static  -O0 -o ./ctarget/lat_mmap2 lat_mmap2.c ./clib/lmbench.a 
+
 hello: hello.c $(INCS) lmbench.a
 	$(CC)  -static  -O0 -o ./ctarget/hello hello.c ./clib/lmbench.a
 clean:
 	rm ./ctarget/hello  ./ctarget/lat_syscall ./clib/lmbench.a \
 	./clib/lib_timing.o   ./ctarget/lat_fork ./ctarget/lat_exec  \
-	./ctarget/lat_mmap
+	./ctarget/lat_mmap ./ctarget/lat_mmap2
 
 .PHONY:all

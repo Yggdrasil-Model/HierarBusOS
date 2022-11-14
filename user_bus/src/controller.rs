@@ -58,6 +58,7 @@ impl Bus {
 }
 
 pub fn send(m: Message) -> isize{
+    //println!("this user bus");
     BUS.dispatch(m)
 }
 

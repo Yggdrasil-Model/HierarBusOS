@@ -78,13 +78,14 @@ fn init(){
     drop(businner);
 }
 impl Busadapter for Filesystem {
+    
     fn handle(&self, service_id: usize, body:[usize;3])->isize{
         match service_id {
             FS_WRITE=>{sys_write(body[0], body[1] as *const u8, body[2])}
             FS_INIT=>{init();1}
             FS_READ=>{sys_read(body[1] as *const u8, body[2])}
             FS_WRITEV=>{sys_writev(FD_STDOUT,body[1] as *const IoVec, body[2])}
-            _ => {panic!("Unsupported syscall_id: ");}
+            _ => {println!("Unsupported service_id: ");-1}
         }
     }
 }

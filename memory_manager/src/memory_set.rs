@@ -184,6 +184,7 @@ impl MemorySet {
                     MapType::Framed,
                     map_perm,
                 );
+                //println!("program header{} [{:#x}, {:#x})", i,start_va.0 as usize, end_va.0 as usize);
                 max_end_vpn = map_area.vpn_range.get_end();
                 memory_set.push(
                     map_area,
@@ -281,11 +282,13 @@ impl MapArea {
         match self.map_type {
             MapType::Identical => {
                 ppn = PhysPageNum(vpn.0);
+                //println!("VirtualPageNum {:#x}, PhysicalPageNum {:#x}", vpn.0 as usize, ppn.0 as usize);
             }
             MapType::Framed => {
                 let frame = frame_alloc().unwrap();
                 ppn = frame.ppn;
                 self.data_frames.insert(vpn, frame);
+                //println!("VirtualPageNum {:#x}, PhysicalPageNum {:#x}", vpn.0 as usize, ppn.0 as usize);
             }
         }
         let pte_flags = PTEFlags::from_bits(self.map_perm.bits).unwrap();

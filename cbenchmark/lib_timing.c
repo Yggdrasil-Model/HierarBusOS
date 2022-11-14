@@ -192,8 +192,8 @@ double benchmpm(benchmp_fm benchmark, int repetitions,int parallel){
 	// dprintf(1,"mocrotime:%f\n",micro);*/
 
 	//method 2
-    long long micro =e-s;
-	dprintf(1,"result： %llu\n",micro);
+    long long micro =(e-s)/repetitions;
+	dprintf(1,"result: %llu\n",micro);
 	return micro;
 
 }

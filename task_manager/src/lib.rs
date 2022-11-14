@@ -44,6 +44,7 @@ pub fn suspend_current_and_run_next() {
 
     // ---- hold current PCB lock
     let mut task_inner = task.acquire_inner_lock();
+   // println!("pre task id:{}", task.getpid());
     let task_cx_ptr2 = task_inner.get_task_cx_ptr2();
     // Change status to Ready
     task_inner.task_status = TaskStatus::Ready;
@@ -52,6 +53,7 @@ pub fn suspend_current_and_run_next() {
 
     // push back to ready queue.
     add_task(task);
+   
     // jump to scheduling cycle
     schedule(task_cx_ptr2);
 }
@@ -265,10 +267,23 @@ impl Busadapter for Task{
                             service_id: TIMER_GET,
                             body: [0, 0, 0],
                         };
-                        let ms = send(m) as usize;
-                        let buffer = translated_refmut(current_user_token(), cx.x[11] as *mut TimeSpec);
-                        buffer.sec = ms/1000;
-                        buffer.nsec = ms%1000*1000000;
+                       let ms = send(m) as usize;
+                        /*  let e:isize;
+                        let s:isize;
+                        let mut ms:usize;
+                        unsafe{ 
+                            llvm_asm!("rdtime  $0" : "=r"(s)  :: "volatile");
+                        }
+                        for _ in 0..100{
+                            ms = send(m) as usize;
+                        }
+                        unsafe{ 
+                            llvm_asm!("rdtime  $0" : "=r"(e)  :: "volatile");
+                        }
+                        println!("time:{}",(e-s)/100);*/
+                       let buffer = translated_refmut(current_user_token(), cx.x[11] as *mut TimeSpec);
+                       buffer.sec = ms/1000;
+                       buffer.nsec = ms%1000*1000000;
                     }
                     FS_WRITEV => {
                     //println!("enter writev:{} {:#x} {}",cx.x[10],cx.x[11],cx.x[12]);
@@ -338,7 +353,7 @@ impl Busadapter for Task{
                 list_apps();
                 1
             }
-            _ => {panic!("ProcessNode Unsupported syscall_id: ");
+            _ => {println!("TaskNode Unsupported service_id: ");-1
         }
     }
 }

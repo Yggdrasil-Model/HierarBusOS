@@ -8,8 +8,6 @@ void do_fork(iter_t iterations){
     while (iterations-- > 0)
     {
        switch (child_pid = fork()) {
-		case -1:
-			exit(1);
 		case 0: 	/* child */
 			exit(1);
 
@@ -27,7 +25,7 @@ main()
 		state.file = av[optind + 1];*/
 		
 		//benchmpm(do_fork, 3,1);
-        benchmpm(do_fork, 1,1);
+        benchmpm(do_fork, 10,1);
 	    //dprintf(1,"test %f",ret);
 	    return(0);
 }

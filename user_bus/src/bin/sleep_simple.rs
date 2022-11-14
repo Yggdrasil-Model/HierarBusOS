@@ -11,7 +11,7 @@ pub fn main() -> i32 {
     println!("into sleep test!");
     let start = get_time();
     println!("current time_msec = {}", start);
-    sleep(100);
+    sleep(1000);
     let end = get_time();
     println!("time_msec = {} after sleeping 100 ticks, delta = {}ms!", end, end - start);
     println!("r_sleep passed!");

@@ -5,6 +5,7 @@ pub fn sys_write(fd: usize, buffer: &[u8]) -> isize {
         node_id: FILE_SYSTEM,
         service_id: FS_WRITE,
         body: [fd, buffer.as_ptr() as usize, buffer.len()],
+        //body: [fd, 0 as usize, buffer.len()]
     };
     send(m)
  }
@@ -54,7 +55,9 @@ pub fn sys_getpid() -> isize {
     //syscall(SYSCALL_GETPID, [0, 0, 0])
     let m = Message {
         node_id: TASK,
+        //node_id: 12,
         service_id: TASK_GETPID,
+        //service_id: 110,
         body: [0, 0, 0],
     };
     send(m)

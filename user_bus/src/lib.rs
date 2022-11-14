@@ -15,7 +15,7 @@ pub mod console;
 mod syscall;
 mod lang_items;
 
-use syscall::*;
+pub use syscall::*;
 pub mod config;
 pub mod controller;
 pub use config::*;
@@ -84,6 +84,6 @@ pub fn waitpid(pid: usize, exit_code: &mut i32) -> isize {
 pub fn sleep(period_ms: usize) {
     let start = sys_get_time();
     while sys_get_time() < start + period_ms as isize {
-        sys_yield();
+        
     }
 }

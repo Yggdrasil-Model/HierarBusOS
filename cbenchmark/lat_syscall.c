@@ -39,7 +39,14 @@ do_read(iter_t iterations)
 		read(1, &c, 1);
 		}
 }
-  
+void do_gettime(iter_t iterations){
+	struct timespec stop={0,0};
+	while (iterations-- >0){
+		clock_gettime(0,&stop);
+	}
+}
+
+
 
 /*void
 do_stat(int iterations, void *cookie)
@@ -89,8 +96,10 @@ do_openclose(int iterations, void *cookie)
 
 int
 main()
-{	   
-	    benchmpm(do_getpid,10000,1);
+{	   //测试总线内部消息传递开销
+		//benchmpm(do_gettime, 1,1);
+
+		benchmpm(do_gettime, 1000,1);
 		benchmpm(do_write, 10000,1);
 	    return(0);
 }

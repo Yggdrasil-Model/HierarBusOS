@@ -71,15 +71,16 @@ impl Bus {
     pub fn acquire_inner_lock(&self) -> MutexGuard<BusInner> {
         self.inner.lock()
     }
-    pub fn register(&self){
+    pub fn register(&self,node:Arc<dyn Busadapter + Send + Sync>){
+        self.inner.lock().register_table.push( Some(node));
     }
     pub fn dispatch(&self,m: Message)->isize{
         let inner = self.acquire_inner_lock();
         let mut ret: isize = -1;
         if m.node_id >= inner.register_table.len(){
-            panic!("wrong module id!{}", m.node_id);
+            println!("wrong node id!{}", m.node_id);
         }
-        if let Some(s) = &inner.register_table[m.node_id]{
+        else if let Some(s) = &inner.register_table[m.node_id]{
         let point = s.clone();
         drop(inner);
         ret = point.handle(m.service_id, m.body);

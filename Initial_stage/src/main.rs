@@ -59,8 +59,8 @@ pub fn rust_main(_hartid: usize, device_tree_paddr: usize) -> ! {
     println!("[kernel] Hello, world!");
     heap_allocator::init_heap();
     init();
-    net_bridge::init(device_tree_paddr);
-    cluster_bus::test();
+    //net_bridge::init(device_tree_paddr);
+    //cluster_bus::test();
     let mut businner = BUS.acquire_inner_lock();
     businner.register_table.push( Some(Arc::new(Filesystem)));
     businner.register_table.push( Some(Arc::new(Timer)));
